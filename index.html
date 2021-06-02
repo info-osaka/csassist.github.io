@@ -1,1 +1,16 @@
-Hello World
+$ua = $_SERVER['HTTP_USER_AGENT'];// ユーザエージェントを取得
+$ua = str_replace("SonyEricsson", "", $ua);
+if (preg_match("/Android/", $ua)) {
+$br = explode(" ",$ua);
+$device = str_replace(")", "", $br[4]);
+if (preg_match("/ja-jp;/", $ua) or preg_match("/en-us;/",$ua)) {
+$device = $br[6];
+}
+if (preg_match("/HT-03A/", $ua)) {
+$device = "HT-03A";
+}
+if (preg_match("/HWV32/", $ua)) {
+$device = "HWV32";
+}
+}
+echo "$device";
